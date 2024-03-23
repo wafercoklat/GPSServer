@@ -10,10 +10,11 @@ const url = "https://app.tracking.web.id/gettracks_api/service.asmx/getvehicletr
 
 // MySQL Connection
 const pool = mysql.createPool({
-  host: 'localhost',
+  host: '103.77.77.207',
   user: 'root',
-  password: '12345',
-  database: 'sample',
+  port:33069,
+  password: '@L4od1QURXBcdev',
+  database: 'cakraindo_history',
   waitForConnections: true,
   connectionLimit: 1,
   queueLimit: 0
@@ -34,7 +35,7 @@ const fetchDataAndStoreInDB = async () => {
     // Store data in MySQL database
     // Example: Insert data into a table named 'data'
     const connection = await pool.getConnection();
-    const query = 'INSERT INTO GEO_HISTORY (VName, Longitude, Latitude, GPSTime, TimeOut, InRoute, InGarage, InDestination) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO GEO_History (VName, Longitude, Latitude, GPSTime, TimeOut, InRoute, InGarage, InDestination) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     for (const item of data) {
 
         var timeOut = await getTimeoutStat(connection, item) == true ? 1 : 0;

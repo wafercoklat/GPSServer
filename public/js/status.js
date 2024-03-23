@@ -2,7 +2,7 @@ const tolerance = 0.001;
 
 async function getTimeoutStat(connection, trado){
     // console.log(trado.VName);
-    const [rows, fields] = await connection.query('SELECT * FROM GEO_HISTORY WHERE VName = ? ORDER BY ID DESC LIMIT 1', [trado.VName]);
+    const [rows, fields] = await connection.query('SELECT * FROM GEO_History WHERE VName = ? ORDER BY ID DESC LIMIT 1', [trado.VName]);
     if (rows === null || rows.length === 0) {
         return false;
     }
@@ -15,7 +15,7 @@ async function getTimeoutStat(connection, trado){
 
 async function getRouteStat(connection, trado){
     var isWithinRoute = false;
-    const [rows, fields] = await connection.query('SELECT Lat, Lon FROM GEO_ROUTE WHERE CODE = "UOI"');
+    const [rows, fields] = await connection.query('SELECT Lat, Lon FROM GEO_Route WHERE CODE = "UOI"');
     if (rows === null || rows.length === 0) {
         return false;
     }
@@ -38,13 +38,13 @@ async function getRouteStat(connection, trado){
 }
 
 async function getGarageStat(connection, trado){
-    const [rows, fields] = await connection.query('SELECT Lat, Lon FROM GEO_FENCE WHERE CODE = "OAK" AND GARAGE = 1');
+    const [rows, fields] = await connection.query('SELECT Lat, Lon FROM GEO_Fence WHERE CODE = "OAK" AND GARAGE = 1');
 
     return polygonCheck(trado, rows)
 }
 
 async function getDestinationStat(connection, trado){
-    const [rows, fields] = await connection.query('SELECT Lat, Lon FROM GEO_FENCE WHERE CODE = "UOI" AND Destination = 1');
+    const [rows, fields] = await connection.query('SELECT Lat, Lon FROM GEO_Fence WHERE CODE = "UOI" AND Destination = 1');
 
     return polygonCheck(trado, rows)
 }

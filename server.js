@@ -12,13 +12,13 @@ const Speaker = require('speaker');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = '192.168.100.94'
+const HOST = ''
 
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '12345',
-  database: 'sample'
+  password: '@L4od1QURXBcdev',
+  database: 'cakraindo_history'
 });
 
 // 
@@ -202,6 +202,6 @@ process.on('exit', () => {
   clearInterval(interval);
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`Server running at http://${HOST}:${PORT}/`);
+app.listen(HOST, () => {
+  console.log(`Server running at http://localhost:${PORT}/`);
 });
